@@ -13,7 +13,6 @@ describe('VoteComponent', () => {
   })
 
   it('should decrement totalVotes when downvoted, upVote()', () => {
-
     component.downVote();
     expect(component.totalVotes).toBe(-1);
   })
