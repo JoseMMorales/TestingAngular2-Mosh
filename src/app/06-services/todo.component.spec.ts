@@ -22,7 +22,26 @@ describe('TodoComponent', () => {
     });
 
     component.ngOnInit();
-
     expect(component.todos).toBe(todos);
   })
+
+  it('should set todo when returned from the server', () => {
+    let todos: todo[] = [{ id: 1, title: '...'}];
+
+    spyOn(service, 'getTodos').and.callFake(() => {
+      return from([ todos ]);
+    });
+
+    component.ngOnInit();
+    expect(component.todos).toBe(todos);
+  })
+
+  it('should call the server to save the changes when a new item is saved', () => {
+    let observable = jasmine.createSpyObj('Observable', ['subscribe']);
+    let spy = spyOn(service, 'add').and.returnValue(observable);
+
+    component.add();
+    expect(spy).toHaveBeenCalled();
+  })
 })
+
