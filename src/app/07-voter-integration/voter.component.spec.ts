@@ -13,13 +13,14 @@ describe('VoterComponent', () => {
 
     fixture = TestBed.createComponent(VoterComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  //Too test <span class="vote-count">{{ totalVotes }}</span>
+  //Too test {{ totalVotes }} Property
   it('should render total votes', () => {
     component.othersVote = 20;
     component.myVote = 1;
@@ -38,5 +39,15 @@ describe('VoterComponent', () => {
 
     let debugElement = fixture.debugElement.query(By.css('.glyphicon-menu-up'));
     expect(debugElement.classes['highlighted']).toBeTruthy();
+  })
+
+  //Testing Button upVote
+  it('should increase total votes when I click the upvoted button', () => {
+    let button = fixture.debugElement.nativeElement.querySelector('.glyphicon-menu-up');
+    button.click();
+
+    fixture.detectChanges();
+
+    expect(component.totalVotes).toBe(1); //To return 1 as per upVote function in the component
   })
 });
