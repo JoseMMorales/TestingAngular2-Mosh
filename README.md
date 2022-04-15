@@ -1,6 +1,6 @@
 ## TestingDemoAngular
 
-Foundation [Automated Angular Testing](https://www.udemy.com/course/testing-angular-apps/) Course to learn about testing concepts and tools, decide what to test and how, write clean, maintainable and trustworthy tests that won't lie, track how much of the code is covered by tests, how to proceed to test different aspects of of Angular Apps, and mocking dependencies.
+Foundation [Automated Angular Testing](https://www.udemy.com/course/testing-angular-apps/) Course to learn about testing concepts and tools, decide what to test and how. Also, how to write clean, maintainable and trustworthy tests that won't lie, track how much of the code is covered by tests, how to proceed to test different aspects of of Angular Apps, and mocking dependencies.
 
 ### Run tests... 
 => run the command `ng-test`
