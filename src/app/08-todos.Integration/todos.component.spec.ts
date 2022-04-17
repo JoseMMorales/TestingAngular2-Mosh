@@ -1,5 +1,11 @@
 /* tslint:disable:no-unused-variable */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+  waitForAsync
+} from '@angular/core/testing';
 
 import { TodosComponent } from './todos.component';
 import { TodoService } from './todo.service';
@@ -35,5 +41,30 @@ describe('TodosComponent', () => {
     fixture.detectChanges();
     expect(component.todos.length).toBe(3);
   });
+
+  // Deal with Asynchronous Operations
+  // One Way
+
+  // it('should load promiseTodos in Promise from the server', waitForAsync(() => {
+  //   let service = TestBed.inject(TodoService);
+  //   spyOn(service, 'getTodosPromise').and.returnValue(Promise.resolve([1, 2, 3]));
+
+  //   fixture.detectChanges();
+
+  //   fixture.whenStable().then(() => {
+  //     expect(component.todos.length).toBe(3);
+  //   });
+  // }));
+
+  //Another Way
+  it('should load promiseTodos in Promise from the server', fakeAsync(() => {
+    let service = TestBed.inject(TodoService);
+    spyOn(service, 'getTodosPromise').and.returnValue(Promise.resolve([1, 2, 3]));
+
+    fixture.detectChanges();
+
+    tick();
+    expect(component.todos.length).toBe(3);
+  }));
 
 });

@@ -8,12 +8,14 @@ import { TodoService } from './todo.service'
 })
 export class TodosComponent implements OnInit {
   todos: string[] = [];
+  promiseTodos: string[] = [];
   message: string | undefined;
 
   constructor(private service: TodoService) {}
 
   ngOnInit() {
     this.service.getTodos().subscribe((t: string[]) => this.todos = t);
+    this.service.getTodosPromise().then((t: any) => { this.promiseTodos = t });
   }
 
   add(): void {
