@@ -14,6 +14,7 @@ import { UsersComponent } from './users/users.component';
 
 
 import { routes } from './app.routes';
+import { NavComponent } from './nav/nav.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { routes } from './app.routes';
     UserDetailsComponent,
     VoterComponent,
     UsersComponent,
+    NavComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),
