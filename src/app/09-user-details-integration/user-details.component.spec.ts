@@ -1,7 +1,8 @@
 /* tslint:disable:no-unused-variable */
+import { Type } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Observable, of, Subject } from 'rxjs';
 
 import { UserDetailsComponent } from './user-details.component';
 
@@ -11,7 +12,15 @@ class RouterStub {
 }
 
 class ActivatedStub {
-  params: Observable<any> = of({});
+  private subject = new Subject();
+
+  push(value: { id: number }) {
+    this.subject.next(value);
+  }
+
+  get params() {
+    return this.subject.asObservable();
+  }
 }
 
 describe('UserDetailsComponent', () => {
@@ -46,6 +55,16 @@ describe('UserDetailsComponent', () => {
     component.save();
 
     expect(spy).toHaveBeenCalledWith(['users']);
+  });
+
+  it('should navigate to the not found page when an invalid user id is passed', () => {
+    let router = TestBed.inject(Router);
+    let spy = spyOn(router, 'navigate');
+
+    let route: ActivatedStub = TestBed.inject(ActivatedRoute) as unknown as ActivatedStub;
+    route.push({ id: 0 });
+
+    expect(spy).toHaveBeenCalledWith(['not-found']);
   });
 
 });
