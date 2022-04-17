@@ -7,23 +7,23 @@ import { TodoService } from './todo.service'
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
-  todos: any[] = [];
-  message: any;
+  todos: string[] = [];
+  message: string | undefined;
 
   constructor(private service: TodoService) {}
 
   ngOnInit() {
-    this.service.getTodos().subscribe((t: any[]) => this.todos = t);
+    this.service.getTodos().subscribe((t: string[]) => this.todos = t);
   }
 
-  add() {
+  add(): void {
     var newTodo = { title: '... ' };
     this.service.add(newTodo).subscribe(
-      (t: any) => this.todos.push(t),
+      (t: string) => this.todos.push(t),
       (err: any) => this.message = err);
   }
 
-  delete(id: any) {
+  delete(id: number): void {
     if (confirm('Are you sure?'))
       this.service.delete(id).subscribe();
   }

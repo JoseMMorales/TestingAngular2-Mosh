@@ -19,7 +19,7 @@ export class TodoService {
     return this.http.get('...').pipe(map((r:any) => r)).toPromise();
   }
 
-  delete(id: any) {
+  delete(id: number) {
     return this.http.delete('...').pipe(map((r:any) => r));
   }
 }
