@@ -1,12 +1,12 @@
 ## TestingDemoAngular
 
-Foundation [Automated Angular Testing](https://www.udemy.com/course/testing-angular-apps/) Course to learn about testing concepts and tools, decide what to test and how. Also, how to write clean, maintainable and trustworthy tests that won't lie, track how much of the code is covered by tests, how to proceed to test different aspects of of Angular Apps, and mocking dependencies.
+Foundation [Automated Angular Testing](https://www.udemy.com/course/testing-angular-apps/) Course to learn about testing concepts and tools, decide what to test and how. Also, how to write clean, maintainable, and trustworthy tests that won't lie, track how much of the code is covered by tests, how to proceed to test different aspects of Angular Apps, and mocking dependencies.
 
 ### Run tests... 
 => run the command `ng-test`
 
 ### Test Coverage...
-=> run the comand `ng test --code-coverage`
+=> run the command `ng test --code-coverage`
 * It will create a coverage folder in your project automatically, where we can appreciate percentages tested in our project(All files or individually).
 * Click right mouse button over index.html to choose open in live Server.
 
@@ -104,6 +104,106 @@ Please refer to services folder to have a quick look into spies that are integra
 <div align="center">
 
 ![Screenshot 2022-04-20 at 08 35 48](https://user-images.githubusercontent.com/43299285/164165710-2e860850-4253-4efa-aaf0-7f25217fcfaf.png)
+
+</div>
+
+### Providing dependencies when testing(Service)...
+
+* First, we provide service which we want to test, also import in this case `HttpClient` that is being used for API calls.
+
+<div align="center">
+
+![Screenshot 2022-04-20 at 18 05 32](https://user-images.githubusercontent.com/43299285/164274540-5137e190-fe64-42fa-8694-6369aae13757.png)
+
+</div>
+
+* Then we get the dependency(Service) in the test suit injecting it using TestBed.
+
+<div align="center">
+
+![Screenshot 2022-04-20 at 18 06 43](https://user-images.githubusercontent.com/43299285/164275075-d8bfaccd-4088-4618-8b16-53557fbb3c81.png)
+
+</div>
+
+### Providing Router Stub...
+As this component(user-details) is using `Router` and `ActivatedRoute`.
+
+* Stubs...
+
+<div align="center">
+
+![Screenshot 2022-04-20 at 18 31 32](https://user-images.githubusercontent.com/43299285/164279139-372b1c2d-ff87-4f03-9005-6f6080c20ca2.png)
+
+</div>
+
+* Providers...
+
+<div align="center">
+
+![Screenshot 2022-04-20 at 18 28 56](https://user-images.githubusercontent.com/43299285/164278691-c18793d1-7a71-427e-abf2-1e62bff1d115.png)
+
+</div>
+
+### Testing RouterOutlet Components...
+The component that has a router-outlet can be tested out importing `RouterTestingModule`, assertions are based on different specs(app.spec and router.spec) to test `directive` present in the component and path which are added on routes to navigate through(In this case just users).
+
+<div align="center">
+
+![Screenshot 2022-04-20 at 18 41 49](https://user-images.githubusercontent.com/43299285/164281246-5e2aafd8-c13a-480e-b8ac-a12d02d9479e.png)
+
+![Screenshot 2022-04-20 at 18 42 20](https://user-images.githubusercontent.com/43299285/164281120-c3452009-32c3-4feb-97b2-a266ce505e58.png)
+
+</div>
+
+* app.spec...
+
+<div align="center">
+
+![Screenshot 2022-04-20 at 18 42 02](https://user-images.githubusercontent.com/43299285/164281164-bb77bb19-7663-4f14-aab0-a9fdc704e18c.png)
+
+</div>
+
+* router.spec...
+
+<div align="center">
+
+![Screenshot 2022-04-20 at 18 42 20](https://user-images.githubusercontent.com/43299285/164281120-c3452009-32c3-4feb-97b2-a266ce505e58.png)
+
+</div>
+
+### Shallow Component Test and testing Nav Component...
+Here we are testing `routerLink` used to go towards a specific site of the app. we can find the anchor in two approaches as you can see below.
+
+<div align="center">
+
+![Screenshot 2022-04-20 at 18 54 00](https://user-images.githubusercontent.com/43299285/164283054-16642fbd-2f63-4dc2-a6ad-7570d265c6cd.png)
+
+</div>
+
+### Testing attribute Directives...
+* Building `DirectiveHostComponent` up for testing purposes, configuring Testing module declaring Directive created.
+
+<div align="center">
+
+![Screenshot 2022-04-20 at 19 00 44](https://user-images.githubusercontent.com/43299285/164284253-ee5a2122-fc08-45de-92fb-6458ce6dfc85.png)
+
+![Screenshot 2022-04-20 at 19 03 20](https://user-images.githubusercontent.com/43299285/164284618-fd1284c9-42ec-4e50-8dc7-8b41f7e9b985.png)
+
+</div>
+
+* Then we test the two possible scenarios that this directive makes any use.
+
+<div align="center">
+
+![Screenshot 2022-04-20 at 19 02 39](https://user-images.githubusercontent.com/43299285/164284498-831e3faa-0caa-43c2-8b68-036b787378bd.png)
+
+</div>
+
+### Deal with asynchronous operations...
+
+<div align="center">
+
+![Screenshot 2022-04-20 at 19 06 37](https://user-images.githubusercontent.com/43299285/164285130-cbfe33dc-6d66-45d7-a6e3-9ece21be531b.png)
 
 </div>
 
